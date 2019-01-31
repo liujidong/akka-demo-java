@@ -16,6 +16,9 @@ public class App {
 		
 		//工厂模式创建
 		ActorRef ref = system.actorOf(PropsDemoActor.createProps(), "propsActor");
+		
+		//tell方法
+		actorRef.tell("hello Akka", ActorRef.noSender());
 	}
 
 }
