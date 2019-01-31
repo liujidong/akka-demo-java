@@ -13,6 +13,9 @@ public class App {
 		ActorRef actorRef = system.actorOf(Props.create(ActorDemo.class),"actorDemo");
 		//创建子actor
 		//ActorRef childActor = getContext().actorOf(Props.create(ChildActor.class),"childActor");
+		
+		//工厂模式创建
+		ActorRef ref = system.actorOf(PropsDemoActor.createProps(), "propsActor");
 	}
 
 }
