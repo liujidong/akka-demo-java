@@ -13,6 +13,7 @@ public class Test {
 		ActorRef ar = system.actorOf(Props.create(WatchActor.class),"watchActor");
 		//system.stop(ar);
 		//ar.tell(PoisonPill.getInstance(), ActorRef.noSender());
-		ar.tell(Kill.getInstance(), ActorRef.noSender());
+		//ar.tell(Kill.getInstance(), ActorRef.noSender());
+		ar.tell("stopChild", ActorRef.noSender());
 	}
 }
