@@ -11,6 +11,8 @@ public class SimpleActorDemo extends UntypedActor {
 			if(message instanceof String){
 				if("end".equals(message)){
 					getContext().unbecome();
+				}else if("become3".equals(message)){
+					getContext().become(LEVEL3,false);
 				}
 			}else{
 				Emp emp = (Emp)message;
@@ -36,6 +38,22 @@ public class SimpleActorDemo extends UntypedActor {
 		}
 		
 	};
+	Procedure<Object> LEVEL3 = new Procedure<Object>(){
+
+		@Override
+		public void apply(Object message) throws Exception {
+			if(message instanceof String){
+				if(message.equals("end")){
+					getContext().unbecome();
+				}
+			}else{
+				Emp emp = (Emp)message;
+				double result = emp.getSalary()*1.2;
+				System.out.println("员工"+emp.getName()+"的奖金为："+result);
+			}
+		}
+		
+	};	
 	@Override
 	public void onReceive(Object msg) throws Exception {
 		String level = (String)msg;

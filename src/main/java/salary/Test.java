@@ -12,6 +12,7 @@ public class Test {
 		ref.tell("1", ActorRef.noSender());
 		ref.tell(new Emp("张三",10000), ActorRef.noSender());
 		ref.tell(new Emp("李四",20000), ActorRef.noSender());
+		ref.tell("become3", ActorRef.noSender());
 		ref.tell("end", ActorRef.noSender());
 		ref.tell("2", ActorRef.noSender());
 		ref.tell(new Emp("wang 5",10000), ActorRef.noSender());
