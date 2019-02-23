@@ -16,31 +16,33 @@ public class App {
 		//参数为ActorSystem的名字，可以不传
 		ActorSystem system = ActorSystem.create("sys");
 		//参数分别是构造器和actor的名字，名字可以不传
-		ActorRef actorRef = system.actorOf(Props.create(ActorDemo.class),"actorDemo");
+//		ActorRef actorRef = system.actorOf(Props.create(ActorDemo.class),"actorDemo");
 		//创建子actor
 		//ActorRef childActor = getContext().actorOf(Props.create(ChildActor.class),"childActor");
 		
 		//工厂模式创建
-		ActorRef ref = system.actorOf(PropsDemoActor.createProps(), "propsActor");
+		//ActorRef ref = system.actorOf(PropsDemoActor.createProps(), "propsActor");
 		
 		//tell方法
-		actorRef.tell("hello Akka", ActorRef.noSender());
+		//actorRef.tell("hello Akka", ActorRef.noSender());
 		
 		//ask方法
-		ActorRef ask_ar = system.actorOf(Props.create(AskActorDemo.class),"askDemo");
-		Timeout timeout = new Timeout(Duration.create(2, "seconds"));
-		//Patterns.ask异步请求，Future阻塞获取
-		Future<Object> f = Patterns.ask(ask_ar, "Akka Ask", timeout);
-		System.out.println("ask...");
-		f.onSuccess(new OnSuccess<Object>() {
-
-			@Override
-			public void onSuccess(Object result) throws Throwable {
-				System.out.println("收到消息："+result);
-			}
-			
-		}, system.dispatcher());
-		System.out.println("continue...");
+//		ActorRef ask_ar = system.actorOf(Props.create(AskActorDemo.class),"askDemo");
+//		Timeout timeout = new Timeout(Duration.create(2, "seconds"));
+//		//Patterns.ask异步请求，Future阻塞获取
+//		Future<Object> f = Patterns.ask(ask_ar, "Akka Ask", timeout);
+//		System.out.println("ask...");
+//		f.onSuccess(new OnSuccess<Object>() {
+//
+//			@Override
+//			public void onSuccess(Object result) throws Throwable {
+//				System.out.println("收到消息："+result);
+//			}
+//			
+//		}, system.dispatcher());
+//		System.out.println("continue...");
+		ActorRef actorRef = system.actorOf(Props.create(LookupActor.class),"lookupActor");
+		actorRef.tell("find", ActorRef.noSender());
 	}
 
 }
